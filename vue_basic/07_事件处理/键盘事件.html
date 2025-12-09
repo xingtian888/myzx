@@ -3,18 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>初始VUE</title>
+    <title>键盘事件</title>
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 <body>
     <div id="root">
-        单向数据绑定 <input type="text" v-bind:value="name"/> <br/>
-        双向数据绑定 <input type="text" v-model:value="name"/>  <br/>
-
-        <h1> 简写方法 v-model默认绑定到 元素的value上 </h1>
-
-        单向数据绑定 <input type="text" :value="name"/> <br/>
-        双向数据绑定 <input type="text" v-model="name"/>  <br/>
+        <h1> 键盘事件 {{name}} </h1>
+        <input  @keyup.ctrl.y="showinfo" type="text" value="1"/>
     </div>
      <script type="text/javascript">
         Vue.config.productionTip = false 
@@ -22,7 +17,13 @@
            el:'#root',
            data: {
              name : '尚硅谷'
-           } 
+           } ,
+           methods:{
+              showinfo(e){
+                console.info(e.target.value)
+              }
+
+           }
         })
      </script>
 </body>

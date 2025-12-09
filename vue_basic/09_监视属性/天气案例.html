@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名案例_插值语法实现</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+         
+         
+
+         <span>今天天气很{{info}}</span> <br>
+         <button @click="changeHot">切换天气</button>
+    </div>
+     <script type="text/javascript">
+        Vue.config.productionTip = false 
+        const vm = new Vue({
+           el:'#root',
+           data: {
+             isHot : false             
+           } ,
+           computed:{
+              info(){
+                return this.isHot?"炎热":"凉爽"
+              }
+           },
+           methods :{
+
+              changeHot(){
+                  this.isHot=!this.isHot
+              }
+  
+           }
+        //    第一种写法
+        //    watch:{
+        //       isHot:{
+        //         immediate:true,     
+        //         handler(newValue, oldValue){
+        //            console.info(newValue,oldValue)
+        //         }
+
+        //       }
+        //    }
+        })
+
+        //第二种写法
+
+        vm.$watch("isHot",
+               {
+                immediate:true,     
+                handler(newValue, oldValue){
+                   console.info(newValue,oldValue)
+                }
+               } 
+               )
+     </script>
+</body>
+</html>

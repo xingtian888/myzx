@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初始VUE</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1> 你好 {{name}} </h1>
+    </div>
+     <script type="text/javascript">
+        Vue.config.productionTip = false 
+        // const v = new Vue({
+        //      el:'#root',          //el 第一种写法
+        //    data: {
+        //      name : '尚硅谷'
+        //    } 
+        // })
+        // v.$mount("#root"); 
+        // v.$mount("#root"); //el 第二种写法
+
+        //  const v = new Vue({
+
+        //  })
+        // const v = new Vue({
+        //    el:'#root',          //el 第一种写法
+        //    data: function() {   //data 第二种写法
+        //     return {
+        //       name : '尚硅谷2'
+        //     }
+        //    }   
+        // })
+
+          const v = new Vue({
+            el:'#root',          //el 第一种写法
+            data(){
+            return {
+              name : '尚硅谷444'
+            }
+           }   
+        })
+
+     </script>
+</body>
+</html>

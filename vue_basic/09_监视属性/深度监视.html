@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名案例_插值语法实现</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+         
+         
+
+         <span>今天天气很{{info}}</span> <br>
+         <button @click="changeHot">切换天气</button><br>
+         <span>number X {{number.x}}</span> <br>
+         <button @click="number.x++">X++</button><br>
+         <span>number Y {{number.y}}</span> <br>
+         <button @click="number.y++">Y++</button>
+
+    </div>
+     <script type="text/javascript">
+        Vue.config.productionTip = false 
+        const vm = new Vue({
+           el:'#root',
+           data: {
+             isHot : false ,
+             number:{
+               x:0,
+               y:0
+             }            
+           } ,
+           computed:{
+              info(){
+                return this.isHot?"炎热":"凉爽"
+              }
+           },
+           methods :{
+
+              changeHot(){
+                  this.isHot=!this.isHot
+              }
+  
+           },
+        //    第一种写法
+           watch:{
+            //   isHot:{
+            //     immediate:true,     
+            //     handler(newValue, oldValue){
+            //        console.info(newValue,oldValue)
+            //     }
+
+            //   },
+            //   'number.x':{
+            //     handler(newValue, oldValue){
+            //        console.info('x',newValue,oldValue)
+            //     }
+            //     },
+            //    'number.y':{
+            //      handler(newValue, oldValue){
+            //        console.info('y',newValue,oldValue)
+            //     }
+            //     },
+                //深度监视
+                'number':{
+                 deep:true,
+                 handler(newValue, oldValue){
+                   console.info('y',newValue,oldValue)
+                }
+                }
+           }
+        })
+
+        //第二种写法 简写
+        
+        vm.$watch("isHot",function(newValue, oldValue)
+               {
+                 console.info(newValue,oldValue)          
+               } 
+               )
+     </script>
+</body>
+</html>
