@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表排序</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+      <style>
+    .basic {
+      width: 200px;
+      height: 100px;
+      border: 4px solid red;
+      background-color: white;
+    }
+
+    .normal {
+      background-color: aliceblue;
+    }
+
+    .bad {
+      background-color: chartreuse;
+    }
+
+    .happy {
+      background-color: chocolate;
+    }
+
+    .x1 {
+      background-color: coral;
+    }
+
+    .x2 {
+      font-size: medium;
+      font-weight: 700
+    }
+
+    .x3 {
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+    <div id="root">
+        <span>人员列表(数组) 列表过滤</span> <br/>
+        <input type="text" placeholder="请输入人名" v-model="keyword">
+        <button v-on:click="sortType = 1">年龄升序</button>
+        <button v-on:click="sortType = 2">年龄降序</button>
+        <button v-on:click="sortType = 0">还原</button>
+        <ul>
+           <li v-for="(item,index) in fillpersons" :key="item.id">
+             {{item.name}} -{{item.sex}} -  {{item.age}}  
+           </li>
+
+           <button v-on:click="add">增加人员1</button>
+         </ul>
+            
+
+ 
+
+ 
+    </div>
+     <script type="text/javascript">
+        Vue.config.productionTip = false 
+        const vm = new Vue({
+           el:'#root',
+           data: {
+             sortType : 0 , //0 不变 1升序 2 降序
+             name : '尚硅谷',
+             mode : 'normal',
+             keyword:"",
+             persons : [
+              {id:"001",name:"马冬梅",age:18,sex:'男'},
+              {id:"002",name:"周冬雨",age:20,sex:'男'},
+              {id:"003",name:"周杰伦",age:17,sex:'女'},
+              {id:"004",name:"温兆伦",age:19,sex:'女'}
+              ]
+            // fillpersons:[]
+           } ,
+           methods:{
+              add(){
+                 let e = {id:"004",name:"温兆伦",age:21,sex:'女'}
+                 this.persons.unshift(e);
+              }
+           },
+           computed: {
+               fillpersons(){
+                 let arr = this.persons.filter(p => p.name.indexOf(this.keyword) !== -1);
+                 if (this.sortType){
+                     arr.sort((a,b)=>{
+                        return  this.sortType == 1 ? a.age - b.age : b.age - a.age
+                     })
+                 }
+                 return arr;
+               }
+           },
+           watch:{
+            // 简写 wathc 写法
+            //  keyword(newValue,oldValue){
+            //       console.info(newValue)
+            //       this.fillpersons = this.persons.filter((item)=>{
+            //         return item.name.indexOf(newValue)!=-1
+            //     })
+            //  }
+             //wathc 写法
+
+            //  keyword:{
+            //       immediate:true,
+            //       handler(newValue,oldValue){
+            //         console.info(newValue)
+            //         this.fillpersons = this.persons.filter((item)=>{
+            //           return item.name.indexOf(newValue)!=-1
+            //         })
+            //       }
+            //  }
+           }
+        })
+     </script>
+</body>
+</html>

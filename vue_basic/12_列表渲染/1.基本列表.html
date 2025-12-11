@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初始VUE</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+      <style>
+    .basic {
+      width: 200px;
+      height: 100px;
+      border: 4px solid red;
+      background-color: white;
+    }
+
+    .normal {
+      background-color: aliceblue;
+    }
+
+    .bad {
+      background-color: chartreuse;
+    }
+
+    .happy {
+      background-color: chocolate;
+    }
+
+    .x1 {
+      background-color: coral;
+    }
+
+    .x2 {
+      font-size: medium;
+      font-weight: 700
+    }
+
+    .x3 {
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+    <div id="root">
+        <span>人员列表(数组)</span>
+        <ul>
+           <li v-for="(item,index) in persons" :key="index">
+             {{item.name}} --  {{item.age}}
+           </li>
+          
+        </ul>
+        <span>列表(对象属性)</span>
+          <ul>
+           <li v-for="(value,name) in person" :key="name">
+             {{name}} --  {{value}}
+           </li>
+          
+        </ul>
+
+         <span>列表(字符串)</span>
+          <ul>
+           <li v-for="(value,index) in 'abcdeff'" :key="index">
+             {{index}} --  {{value}}
+           </li>          
+          </ul>
+
+         <span>列表(数字)</span>
+          <ul>
+           <li v-for="(value,index) in 8" :key="index">
+             {{index}} --  {{value}}
+           </li>          
+          </ul>
+    </div>
+     <script type="text/javascript">
+        Vue.config.productionTip = false 
+        const vm = new Vue({
+           el:'#root',
+           data: {
+             name : '尚硅谷',
+             mode : 'normal',
+             persons : [
+              {id:"001",name:"张三",age:18},
+              {id:"002",name:"李四",age:19},
+              {id:"003",name:"王五",age:20}
+              ],
+             person :{
+               id : "001",
+               name : "zhangshan",
+               age:18
+             } 
+           } 
+        })
+     </script>
+</body>
+</html>
