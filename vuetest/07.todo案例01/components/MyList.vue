@@ -1,0 +1,49 @@
+
+
+<template>
+	<ul class="todo-main">
+       <MyItem 
+         v-for="toObj in todos"  
+         :key="toObj.id" 
+         :todo="toObj" 
+         :checkTodo="checkTodo"
+         />
+        
+	</ul>
+</template>
+
+<script   >
+import MyItem from './MyItem.vue';
+ 
+ 
+
+export default {
+    name: 'MyList',
+    props:['todos','checkTodo'],
+
+    components: {
+       MyItem 
+    }
+    
+
+}
+</script>
+
+<style scoped>
+	/*main*/
+	.todo-main {
+		margin-left: 0px;
+		border: 1px solid #ddd;
+		border-radius: 2px;
+		padding: 0px;
+	}
+
+	.todo-empty {
+		height: 40px;
+		line-height: 40px;
+		border: 1px solid #ddd;
+		border-radius: 2px;
+		padding-left: 5px;
+		margin-top: 10px;
+	}
+</style>
